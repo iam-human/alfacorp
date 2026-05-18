@@ -24,8 +24,8 @@
         </svg>
     </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full" style="margin-top: 60px; margin-bottom: 30px;">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-14rem)] py-20 lg:py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full mt-10 mb-8 md:mt-[60px] md:mb-[45px] lg:mt-[80px] lg:mb-[60px]">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-14rem)] py-10 lg:py-10">
             
             {{-- BILAH KIRI: Konten Tetap (Paten) --}}
             <div data-aos="fade-right" data-aos-duration="700">
@@ -107,7 +107,7 @@
                 <div class="absolute -bottom-3 -left-3 w-14 h-14 rounded-xl -rotate-6 opacity-60" style="background:#e0f8ff;"></div>
 
                 {{-- Stats row below image (Tetap) --}}
-                <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-3"
+                <div class="mt-6 grid grid-cols-3 gap-3"
                      x-data="{
                         counted:false,
                         countUp(el,target,suffix){
