@@ -24,7 +24,7 @@
         </svg>
     </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full" style="margin-top: 60px; margin-bottom: 30px;">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-14rem)] py-20 lg:py-10">
             
             {{-- BILAH KIRI: Konten Tetap (Paten) --}}
@@ -163,16 +163,7 @@
         </div>
     </div>
 
-    {{-- Slider Controls (Paten) --}}
-    @if($heroes->count() > 1)
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex gap-3">
-        @foreach($heroes as $index => $h)
-        <button @click="active = {{ $index }}" 
-                class="w-3 h-3 rounded-full transition-all duration-300"
-                :class="active === {{ $index }} ? 'bg-primary w-8' : 'bg-slate-300 hover:bg-primary/50'"></button>
-        @endforeach
-    </div>
-    @endif
+
 </section>
 @endif
 

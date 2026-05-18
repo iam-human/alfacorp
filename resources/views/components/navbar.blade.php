@@ -178,6 +178,4 @@
     </nav>
 </div>
 
-{{-- Spacer --}}
-<div class="lg:hidden" style="height: 96px;"></div>
-<div class="hidden lg:block" style="height: 128px;"></div>
+
