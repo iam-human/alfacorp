@@ -9,6 +9,7 @@ use App\Models\Inquiry;
 use App\Models\Portfolio;
 use App\Models\PortfolioCategory;
 use App\Models\Service;
+use App\Models\Partner;
 use App\Models\Team;
 use App\Models\Testimonial;
 use App\Models\User;
@@ -100,6 +101,10 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Anggota Tim ' . ($index + 1),
                 'position' => $pos,
                 'bio' => 'Berpengalaman lebih dari 5 tahun di bidangnya dan selalu bersemangat menciptakan inovasi baru.',
+                'instagram_url' => 'https://instagram.com/alfacorp',
+                'linkedin_url' => 'https://linkedin.com/company/alfacorp',
+                'email' => 'tim' . ($index + 1) . '@alfacorp.com',
+                'phone' => '628123456789' . $index,
                 'is_active' => true,
                 'sort_order' => $index,
             ]);
@@ -152,6 +157,16 @@ class DatabaseSeeder extends Seeder
                 'subject' => 'Tanya Layanan',
                 'message' => 'Halo, saya tertarik dengan layanan yang Anda tawarkan. Mohon informasi lebih lanjut.',
                 'status' => 'new',
+            ]);
+        }
+
+        // Partners / Clients
+        $mockPartners = ['Fextol', 'Almobeo', 'NetSheet', 'Revolve', 'Refert'];
+        foreach ($mockPartners as $name) {
+            Partner::firstOrCreate([
+                'name' => $name,
+            ], [
+                'logo' => 'partners/' . strtolower($name) . '.svg',
             ]);
         }
     }

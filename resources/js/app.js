@@ -10,3 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
         easing: 'ease-in-out',
     });
 });
+
+document.addEventListener('livewire:init', () => {
+    Livewire.hook('request', ({ succeed }) => {
+        succeed(() => {
+            setTimeout(() => {
+                AOS.refresh();
+            }, 100);
+        });
+    });
+});

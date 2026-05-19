@@ -18,26 +18,26 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <label for="name" class="block text-sm font-medium text-slate-700 mb-2">Nama Lengkap *</label>
-                <input type="text" id="name" wire:model.blur="name" class="w-full px-4 py-3 rounded-xl border {{ $errors->has('name') ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : 'border-slate-200 focus:border-primary focus:ring-primary/20' }} outline-none transition-shadow" placeholder="Masukkan nama Anda">
+                <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Nama Lengkap *</label>
+                <input type="text" id="name" wire:model.blur="name" class="w-full px-4 py-3 rounded-xl border {{ $errors->has('name') ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : 'border-slate-200 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:border-primary focus:ring-primary/20' }} outline-none transition-shadow" placeholder="Masukkan nama Anda">
                 @error('name') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
             <div>
-                <label for="email" class="block text-sm font-medium text-slate-700 mb-2">Email *</label>
-                <input type="email" id="email" wire:model.blur="email" class="w-full px-4 py-3 rounded-xl border {{ $errors->has('email') ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : 'border-slate-200 focus:border-primary focus:ring-primary/20' }} outline-none transition-shadow" placeholder="nama@email.com">
+                <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Email *</label>
+                <input type="email" id="email" wire:model.blur="email" class="w-full px-4 py-3 rounded-xl border {{ $errors->has('email') ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : 'border-slate-200 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:border-primary focus:ring-primary/20' }} outline-none transition-shadow" placeholder="nama@email.com">
                 @error('email') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <label for="phone" class="block text-sm font-medium text-slate-700 mb-2">Nomor Telepon/WA</label>
-                <input type="text" id="phone" wire:model.blur="phone" class="w-full px-4 py-3 rounded-xl border {{ $errors->has('phone') ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : 'border-slate-200 focus:border-primary focus:ring-primary/20' }} outline-none transition-shadow" placeholder="0812xxxxxx">
+                <label for="phone" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Nomor Telepon/WA</label>
+                <input type="text" id="phone" wire:model.blur="phone" class="w-full px-4 py-3 rounded-xl border {{ $errors->has('phone') ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : 'border-slate-200 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:border-primary focus:ring-primary/20' }} outline-none transition-shadow" placeholder="0812xxxxxx">
                 @error('phone') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
             <div>
-                <label for="service" class="block text-sm font-medium text-slate-700 mb-2">Layanan yang Diminati</label>
-                <select id="service" wire:model="service_id" class="w-full px-4 py-3 rounded-xl border {{ $errors->has('service_id') ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : 'border-slate-200 focus:border-primary focus:ring-primary/20' }} outline-none transition-shadow bg-white">
+                <label for="service" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Layanan yang Diminati</label>
+                <select id="service" wire:model="service_id" class="w-full px-4 py-3 rounded-xl border {{ $errors->has('service_id') ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : 'border-slate-200 dark:border-gray-700 focus:border-primary focus:ring-primary/20' }} outline-none transition-shadow bg-white dark:bg-gray-800 dark:text-white">
                     <option value="">Pilih Layanan</option>
                     @foreach($services as $service)
                         <option value="{{ $service->id }}">{{ $service->title }}</option>
@@ -48,8 +48,8 @@
         </div>
 
         <div>
-            <label for="message" class="block text-sm font-medium text-slate-700 mb-2">Pesan *</label>
-            <textarea id="message" wire:model.blur="message" rows="5" class="w-full px-4 py-3 rounded-xl border {{ $errors->has('message') ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : 'border-slate-200 focus:border-primary focus:ring-primary/20' }} outline-none transition-shadow" placeholder="Ceritakan detail kebutuhan atau proyek Anda..."></textarea>
+            <label for="message" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Pesan *</label>
+            <textarea id="message" wire:model.blur="message" rows="5" class="w-full px-4 py-3 rounded-xl border {{ $errors->has('message') ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : 'border-slate-200 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:border-primary focus:ring-primary/20' }} outline-none transition-shadow" placeholder="Ceritakan detail kebutuhan atau proyek Anda..."></textarea>
             @error('message') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
         </div>
 

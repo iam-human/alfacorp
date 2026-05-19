@@ -1,0 +1,31 @@
+name: Deploy Laravel App
+
+on:
+  push:
+    branches:
+      - develop # Target branch develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Server via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          port: ${{ secrets.PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /var/www/alfacorp # Ubah ini ke path directory project Anda di server VPS
+            git pull origin develop # Ambil update dari branch develop
+            composer install --no-dev --optimize-autoloader
+            php artisan migrate --force
+            npm install
+            npm run build
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache

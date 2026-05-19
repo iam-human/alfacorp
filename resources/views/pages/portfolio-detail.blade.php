@@ -4,7 +4,7 @@
 
 @section('content')
 <!-- Hero Banner -->
-<section class="bg-primary text-white pt-32 pb-20 relative overflow-hidden">
+<section class="bg-primary text-white pt-40 lg:pt-48 pb-20 relative overflow-hidden">
     <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <span class="inline-block bg-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-semibold mb-6">{{ $portfolio->category->name }}</span>
@@ -14,27 +14,27 @@
 </section>
 
 <!-- Project Content -->
-<section class="py-20 bg-white">
+<section class="py-20 bg-white dark:bg-gray-950">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <!-- Main Content -->
             <div class="lg:col-span-2">
                 @if($portfolio->thumbnail)
-                    <div class="mb-12 rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+                    <div class="mb-12 rounded-2xl overflow-hidden shadow-lg border border-slate-100 dark:border-gray-800">
                         <img src="{{ Storage::url($portfolio->thumbnail) }}" alt="{{ $portfolio->title }}" class="w-full h-auto">
                     </div>
                 @endif
                 
-                <h2 class="text-3xl font-heading font-bold mb-6 text-slate-900">Tentang Proyek</h2>
-                <div class="prose prose-lg prose-slate max-w-none mb-12">
+                <h2 class="text-3xl font-heading font-bold mb-6 text-slate-900 dark:text-white">Tentang Proyek</h2>
+                <div class="prose prose-lg prose-slate dark:prose-invert max-w-none mb-12">
                     {!! $portfolio->full_description !!}
                 </div>
 
                 @if($portfolio->images->count() > 0)
-                    <h3 class="text-2xl font-heading font-bold mb-6 text-slate-900">Galeri Proyek</h3>
+                    <h3 class="text-2xl font-heading font-bold mb-6 text-slate-900 dark:text-white">Galeri Proyek</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" x-data="{ imgModal : false, imgModalSrc : '', imgModalDesc : '' }">
                         @foreach($portfolio->images as $image)
-                            <div class="relative group cursor-pointer overflow-hidden rounded-xl border border-border" @click="imgModal = true; imgModalSrc = '{{ Storage::url($image->image_path) }}'; imgModalDesc = '{{ $image->caption }}'">
+                            <div class="relative group cursor-pointer overflow-hidden rounded-xl border border-border dark:border-gray-800" @click="imgModal = true; imgModalSrc = '{{ Storage::url($image->image_path) }}'; imgModalDesc = '{{ $image->caption }}'">
                                 <img src="{{ Storage::url($image->image_path) }}" alt="{{ $image->caption }}" class="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500">
                                 @if($image->caption)
                                     <div class="absolute inset-x-0 bottom-0 bg-black/60 text-white p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
@@ -63,32 +63,32 @@
 
             <!-- Sidebar -->
             <div>
-                <div class="bg-surface-alt rounded-2xl p-8 border border-slate-100 sticky top-28">
-                    <h3 class="text-xl font-heading font-bold mb-6 text-slate-900 border-b border-border pb-4">Informasi Proyek</h3>
+                <div class="bg-surface-alt dark:bg-gray-900 rounded-2xl p-8 border border-slate-100 dark:border-gray-800 sticky top-28">
+                    <h3 class="text-xl font-heading font-bold mb-6 text-slate-900 dark:text-white border-b border-border dark:border-gray-800 pb-4">Informasi Proyek</h3>
                     
                     <div class="space-y-6">
                         @if($portfolio->client_name)
                         <div>
-                            <span class="text-sm text-neutral-500 block mb-1">Klien</span>
-                            <span class="font-bold text-slate-900">{{ $portfolio->client_name }}</span>
+                            <span class="text-sm text-neutral-500 dark:text-slate-400 block mb-1">Klien</span>
+                            <span class="font-bold text-slate-900 dark:text-white">{{ $portfolio->client_name }}</span>
                         </div>
                         @endif
                         
                         <div>
-                            <span class="text-sm text-neutral-500 block mb-1">Kategori</span>
-                            <span class="font-bold text-slate-900">{{ $portfolio->category->name }}</span>
+                            <span class="text-sm text-neutral-500 dark:text-slate-400 block mb-1">Kategori</span>
+                            <span class="font-bold text-slate-900 dark:text-white">{{ $portfolio->category->name }}</span>
                         </div>
                         
                         @if($portfolio->project_date)
                         <div>
-                            <span class="text-sm text-neutral-500 block mb-1">Tanggal Selesai</span>
-                            <span class="font-bold text-slate-900">{{ $portfolio->project_date->format('d F Y') }}</span>
+                            <span class="text-sm text-neutral-500 dark:text-slate-400 block mb-1">Tanggal Selesai</span>
+                            <span class="font-bold text-slate-900 dark:text-white">{{ $portfolio->project_date->format('d F Y') }}</span>
                         </div>
                         @endif
                         
                         @if($portfolio->project_url)
-                        <div class="pt-4 border-t border-border mt-6">
-                            <a href="{{ $portfolio->project_url }}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full border-2 border-primary text-primary px-6 py-3 rounded-xl font-semibold hover:bg-primary hover:text-white transition-colors">
+                        <div class="pt-4 border-t border-border dark:border-gray-800 mt-6">
+                            <a href="{{ $portfolio->project_url }}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full border-2 border-primary text-primary dark:text-slate-200 hover:bg-primary hover:text-white dark:hover:text-white transition-colors py-3 rounded-xl font-semibold">
                                 Kunjungi Website
                                 <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                             </a>
@@ -103,12 +103,12 @@
 
 @if($relatedPortfolios->count() > 0)
 <!-- Related Projects -->
-<section class="py-20 bg-surface-alt">
+<section class="py-20 bg-surface-alt dark:bg-gray-950/50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h3 class="text-3xl font-heading font-bold mb-10 text-center">Proyek Serupa</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <h3 class="text-3xl font-heading font-bold mb-10 text-center text-slate-900 dark:text-white">Proyek Serupa</h3>
+        <div class="flex flex-wrap justify-center gap-8">
             @foreach($relatedPortfolios as $related)
-                <div class="group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-all">
+                <div class="w-full max-w-[380px] sm:max-w-none sm:w-[calc(50%-1rem)] md:w-[calc(33.333%-1.35rem)] group bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-800 overflow-hidden hover:shadow-md transition-all">
                     <div class="relative overflow-hidden aspect-[4/3]">
                         <img src="{{ $related->thumbnail ? Storage::url($related->thumbnail) : 'https://placehold.co/800x600/e2e8f0/475569?text=Portfolio' }}" alt="{{ $related->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
@@ -116,7 +116,7 @@
                         <span class="bg-primary/10 text-primary text-xs font-medium px-3 py-1 rounded-full mb-3 inline-block">
                             {{ $related->category->name }}
                         </span>
-                        <h4 class="text-xl font-heading font-bold mb-2 group-hover:text-primary transition-colors">
+                        <h4 class="text-xl font-heading font-bold mb-2 text-slate-900 dark:text-white group-hover:text-primary transition-colors">
                             <a href="{{ route('portfolio.detail', $related->slug) }}">{{ $related->title }}</a>
                         </h4>
                     </div>
