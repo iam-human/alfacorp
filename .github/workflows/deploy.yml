@@ -3,7 +3,7 @@ name: Deploy Laravel App
 on:
   push:
     branches:
-      - develop # Target branch develop
+      - main # Target branch main
 
 jobs:
   deploy:
@@ -21,11 +21,34 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd /var/www/alfacorp # Ubah ini ke path directory project Anda di server VPS
-            git pull origin develop # Ambil update dari branch develop
+            
+            # 1. Aktifkan maintenance mode agar user tidak mendapati error saat deploy
+            php artisan down || true
+            
+            # 2. Ambil update kode terbaru dari branch main
+            git pull origin main
+            
+            # 3. Install dependency PHP (Composer)
             composer install --no-dev --optimize-autoloader
+            
+            # 4. Jalankan migrasi database
             php artisan migrate --force
+            
+            # 5. Buat link storage (jika belum ada)
+            php artisan storage:link || true
+            
+            # 6. Install package JS dan build asset (Vite)
             npm install
             npm run build
+            
+            # 7. Optimasi caching Laravel
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
+            php artisan event:cache
+            
+            # 8. Restart queue worker (jika menggunakan queue)
+            php artisan queue:restart || true
+            
+            # 9. Matikan maintenance mode (website online kembali)
+            php artisan up
