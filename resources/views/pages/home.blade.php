@@ -229,7 +229,7 @@
             {{-- KIRI: 1 Foto, presisi tinggi dengan sisi kanan --}}
             <div class="w-full" data-aos="fade-right" data-aos-duration="700">
                 {{-- Wrapper relative agar garis biru bisa di-overlay di luar overflow-hidden --}}
-                <div class="relative w-full" style="height: 500px;">
+                <div class="relative w-full h-72 sm:h-96 lg:h-[500px]">
 
                     {{-- Gambar dengan overflow-hidden untuk rounded corners --}}
                     <div class="absolute inset-0 rounded-3xl overflow-hidden shadow-2xl">
@@ -372,7 +372,7 @@
     },
     startAutoSlide() {
         this.stopAutoSlide();
-        this.interval = setInterval(() => { this.scrollToNext(); }, 2000);
+        this.interval = setInterval(() => { this.scrollToNext(); }, 4000);
     },
     stopAutoSlide() {
         if (this.interval) clearInterval(this.interval);
@@ -432,7 +432,7 @@
     }
 }">
     {{-- Background Ornaments --}}
-    <img src="/images/portfolio_bg.png" class="absolute inset-0 w-full h-full object-fill pointer-events-none select-none z-0 opacity-85 dark:hidden" alt="">
+    <img src="/images/portfolio_bg.png" class="absolute inset-0 w-full h-full object-fill pointer-events-none select-none z-0 opacity-85 hidden lg:block dark:hidden" alt="">
 
     {{-- Decorative Background Circle --}}
     <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl z-0"></div>
@@ -455,7 +455,7 @@
                 </div>
 
                 {{-- Portfolio Slider --}}
-                <div x-ref="portfolioContainer" class="flex overflow-x-auto gap-6 pb-8 scrollbar-hide snap-x snap-mandatory">
+                <div x-ref="portfolioContainer" class="flex overflow-x-auto gap-6 pb-8 scrollbar-hide snap-x snap-mandatory px-4 -mx-4 sm:px-0 sm:mx-0">
                     @foreach($portfolios as $index => $portfolio)
                         @php
                             $fallbacks = [
@@ -565,9 +565,9 @@
             'subtitle' => 'Dukungan penuh dari tim ahli untuk memastikan kesuksesan proyek Anda.'
         ])
 
-        <div class="flex overflow-x-auto gap-8 pb-28 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 touch-pan-y">
+        <div class="flex overflow-x-auto gap-8 pb-28 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 touch-pan-y snap-x snap-mandatory">
             @foreach($teams as $index => $member)
-                <div class="relative w-[85%] sm:w-[45%] lg:w-[calc(33.333%-1.35rem)] flex-shrink-0" 
+                <div class="relative w-[85%] sm:w-[45%] lg:w-[calc(33.333%-1.35rem)] flex-shrink-0 snap-center" 
                      data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
                     
                     {{-- Photo Container (Only hover/click triggers here) --}}
@@ -753,7 +753,7 @@
                 } else if (window.innerWidth >= 768) {
                     this.stepWidth = 33.33333;
                 } else {
-                    this.stepWidth = 50;
+                    this.stepWidth = 100;
                 }
             },
             next() {
@@ -785,7 +785,7 @@
                  :style="total > 1 ? 'transform: translateX(-' + (currentIndex * stepWidth) + '%)' : 'justify-content: center;'">
                  
                  @foreach($displayPartners as $partner)
-                     <div class="w-1/2 md:w-1/3 lg:w-1/4 flex-shrink-0 px-2 sm:px-3">
+                     <div class="w-full md:w-1/3 lg:w-1/4 flex-shrink-0 px-2 sm:px-3">
                          <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-lg border border-white/10 flex items-center justify-center h-20 sm:h-24 transform hover:scale-[1.03] transition-all duration-300">
                              <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->name }}" class="max-h-[70%] max-w-[85%] object-contain filter hover:brightness-105 transition-all">
                          </div>
@@ -802,7 +802,7 @@
 @if($testimonials->isNotEmpty())
 <section class="py-24 bg-white dark:bg-gray-950 overflow-hidden relative" style="z-index: 10; border-top: 2px solid rgba(2,187,255,0.5); border-bottom: 2px solid rgba(2,187,255,0.5);">
     {{-- Background Ornaments --}}
-    <img src="/images/testimonial_bg.png" class="absolute inset-0 w-full h-full object-fill pointer-events-none select-none z-0 opacity-85 dark:hidden" alt="">
+    <img src="/images/testimonial_bg.png" class="absolute inset-0 w-full h-full object-fill pointer-events-none select-none z-0 opacity-85 hidden lg:block dark:hidden" alt="">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
