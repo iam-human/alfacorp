@@ -69,6 +69,12 @@ class PageController extends Controller
         return view('pages.blog-detail', compact('blog', 'relatedBlogs'));
     }
 
+    public function team()
+    {
+        $teams = Team::where('is_active', true)->orderBy('sort_order')->get();
+        return view('pages.team', compact('teams'));
+    }
+
     public function contact()
     {
         return view('pages.contact');

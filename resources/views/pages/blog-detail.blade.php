@@ -4,7 +4,7 @@
 
 @section('content')
 <!-- Hero Banner -->
-<section class="bg-primary text-white pt-32 pb-20 relative overflow-hidden">
+<section class="bg-primary text-white pt-40 lg:pt-48 pb-20 relative overflow-hidden">
     <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         <div class="flex items-center justify-center gap-4 mb-6">

@@ -4,7 +4,7 @@
 
 @section('content')
 <!-- Hero Banner -->
-<section class="bg-primary text-white pt-32 pb-20 relative overflow-hidden">
+<section class="bg-primary text-white pt-40 lg:pt-48 pb-20 relative overflow-hidden">
     <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4">Layanan Unggulan Kami</h1>
@@ -13,11 +13,18 @@
 </section>
 
 <!-- Services Grid -->
-<section class="py-24 bg-surface-alt">
+<section class="py-24 bg-surface-alt dark:bg-gray-950">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        @php
+            $count = $services->count();
+            $useThreeCols = ($count > 4 && ($count % 4 === 1));
+            $itemWidthClass = $useThreeCols 
+                ? 'w-full max-w-[380px] sm:max-w-none sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.35rem)]' 
+                : 'w-full max-w-[380px] sm:max-w-none sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.35rem)] xl:w-[calc(25%-1.5rem)]';
+        @endphp
+        <div class="flex flex-wrap justify-center gap-8">
             @foreach($services as $index => $service)
-                <div class="group bg-white rounded-2xl shadow-sm border {{ $service->is_featured ? 'border-primary shadow-primary/10' : 'border-slate-100' }} p-8 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 relative overflow-hidden">
+                <div class="{{ $itemWidthClass }} group bg-white dark:bg-gray-900 rounded-2xl shadow-sm border {{ $service->is_featured ? 'border-primary shadow-primary/10' : 'border-slate-100 dark:border-gray-850' }} p-8 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 relative overflow-hidden flex flex-col">
                     @if($service->is_featured)
                         <div class="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 rounded-bl-lg">Unggulan</div>
                     @endif
@@ -30,15 +37,15 @@
                         @endif
                     </div>
                     
-                    <h3 class="text-2xl font-heading font-bold mb-4 group-hover:text-primary transition-colors">
+                    <h3 class="text-2xl font-heading font-bold mb-4 text-slate-900 dark:text-white group-hover:text-primary transition-colors">
                         <a href="{{ route('service.detail', $service->slug) }}">{{ $service->title }}</a>
                     </h3>
                     
-                    <p class="text-neutral-500 mb-8 leading-relaxed">
+                    <p class="text-neutral-500 dark:text-slate-400 mb-8 leading-relaxed flex-grow">
                         {{ $service->short_description }}
                     </p>
                     
-                    <a href="{{ route('service.detail', $service->slug) }}" class="inline-flex items-center justify-center w-full bg-surface-alt hover:bg-primary hover:text-white text-primary font-semibold px-6 py-3 rounded-xl transition-colors mt-auto">
+                    <a href="{{ route('service.detail', $service->slug) }}" class="inline-flex items-center justify-center w-full bg-surface-alt dark:bg-gray-800 hover:bg-primary hover:text-white text-primary dark:text-slate-200 font-semibold px-6 py-3 rounded-xl transition-colors mt-auto">
                         Pelajari Detailnya
                     </a>
                 </div>

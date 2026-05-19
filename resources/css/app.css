@@ -19,10 +19,24 @@
     --font-heading: "Plus Jakarta Sans", Inter, ui-sans-serif, system-ui, sans-serif;
 }
 
+/* Utility to hide scrollbars on specific elements */
 .scrollbar-hide::-webkit-scrollbar {
-    display: none;
+    display: none !important;
 }
 .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
 }
+
+/* Disable default browser scrollbars completely to prevent layout shifts */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    width: 0px !important;
+    height: 0px !important;
+    display: none !important;
+}
+html, body {
+    scrollbar-width: none !important; /* Hide on Firefox */
+    -ms-overflow-style: none !important; /* Hide on IE/Edge */
+}
+
