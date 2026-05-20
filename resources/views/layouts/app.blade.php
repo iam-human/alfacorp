@@ -19,6 +19,8 @@
 </head>
 <body class="font-sans text-neutral-dark dark:text-slate-100 bg-neutral-light dark:bg-slate-950 antialiased selection:bg-primary selection:text-white flex flex-col min-h-screen">
     
+    
+
     @include('components.navbar')
 
     <main class="flex-grow">
@@ -121,5 +123,37 @@
     </script>
 
     @livewireScripts
+{{-- Global Preloader --}}
+    <div id="global-preloader" style="z-index: 999999;" class="fixed inset-0 z-50 bg-white dark:bg-gray-950 flex items-center justify-center transition-all duration-700 ease-in-out">
+        <div class="relative flex items-center justify-center w-full h-full">
+            {{-- Glowing Pulse Rings --}}
+            <div class="absolute w-62 h-62 md:w-78 md:h-78 bg-primary/5 rounded-full animate-ping" style="animation-duration: 2.5s;"></div>
+            <div class="absolute w-54 h-54 md:w-66 md:h-=66 bg-primary/10 rounded-full animate-pulse" style="animation-duration: 1.5s;"></div>
+            
+            {{-- Logo --}}
+            <img src="/images/preloader_logo.png" alt="AlfaCorp Loading" class="w-40 h-40 md:w-56 md:h-56 object-contain z-10 relative" style="animation: premiumHeartbeat 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;">
+            
+            <style>
+                @keyframes premiumHeartbeat {
+                    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(2,187,255,0.3)); opacity: 0.9; }
+                    50% { transform: scale(1.1); filter: drop-shadow(0 0 30px rgba(2,187,255,0.6)); opacity: 1; }
+                }
+            </style>
+        </div>
+    </div>
+    <script>
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('global-preloader');
+            if (preloader) {
+                setTimeout(() => {
+                    preloader.style.opacity = '0';
+                    preloader.style.transform = 'scale(1.05)';
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                    }, 700);
+                }, 1000); // Tunda 1 detik agar efek loading pas
+            }
+        });
+    </script>
 </body>
 </html>

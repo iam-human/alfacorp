@@ -1,7 +1,8 @@
 {{-- HEADER WRAPPER --}}
 <div id="site-header"
      x-data="{
-         scrolled: false,
+         isHome: {{ request()->routeIs('home') ? 'true' : 'false' }},
+         scrolled: {{ request()->routeIs('home') ? 'false' : 'true' }},
          darkMode: localStorage.getItem('darkMode') === 'true',
          mobileOpen: false,
          toggleDark() {
@@ -11,7 +12,11 @@
          },
          init() {
              document.documentElement.classList.toggle('dark', this.darkMode);
-             window.addEventListener('scroll', () => { this.scrolled = window.scrollY > 20; });
+             window.addEventListener('scroll', () => {
+                 if (this.isHome) {
+                     this.scrolled = window.scrollY > 20;
+                 }
+             });
          }
      }"
      class="fixed top-0 left-0 right-0 z-50">
@@ -154,9 +159,12 @@
                 @endforeach
                 <div class="pt-3 border-t border-slate-100 dark:border-gray-800">
                     <a href="{{ route('contact') }}"
-                       class="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl font-bold text-slate-900 min-h-[48px]"
-                       style="background-color:#02bbff;">
+                       class="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm text-white transition-all shadow-md active:scale-[0.98]"
+                       style="background: linear-gradient(135deg, #02bbff, #0099d6);">
                         Mulai Proyek
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
                     </a>
                 </div>
             </div>
