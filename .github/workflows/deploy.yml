@@ -18,7 +18,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
-          key: ${{ secrets.SSH_KEY }}
+          password: ${{ secrets.PASSWORD }}
           script: |
             # Pastikan path ini sesuai dengan letak folder project di server / hosting Anda!
             cd /home/allfacor/alfacorp 
